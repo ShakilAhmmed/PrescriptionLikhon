@@ -1,0 +1,89 @@
+<!-- Main charts -->
+{% extends "index.html" %}
+{% load i18n %}
+{% block main_content %}
+    {% if messages %}
+        <div class="alert alert-success" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">{% trans 'Medicine Pull' %}</h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <p class="text-success">http://www.squarepharma.com.bd/</p><span
+                class="text-danger">{% trans 'From This Link' %}</span>
+
+            <form class="form-horizontal" action="" method="POST">
+                {% csrf_token %}
+
+                <div class="text-right">
+                    <button type="submit" class="btn btn-success">{% trans 'Submit' %} <i
+                            class="icon-arrow-right14 position-right"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">{% trans 'Medicine List' %} </h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-xlg">
+                <thead>
+                <tr>
+                    <th>{% trans 'Sl No' %}</th>
+                    <th>{% trans 'Medicine Name' %}</th>
+                    <th>{% trans 'Medicine Generic Name' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for medicine_data_value in medicine_data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ medicine_data_value.medicine_name }}</td>
+                        <td>{{ medicine_data_value.medicine_generic_name }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                <span>
+                    {% if medicine_data.has_previous %}
+                        <a href="?page=1">&laquo; First</a>
+                        <a href="?page={{ medicine_data.previous_page_number }}" class="paginate_button previous">Previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ medicine_data.number }} of {{ medicine_data.paginator.num_pages }}.
+                    </span>
+
+                    {% if medicine_data.has_next %}
+                        <a href="?page={{ medicine_data.next_page_number }}" class="paginate_button next">Next</a>
+                        <a href="?page={{ medicine_data.paginator.num_pages }}" class="paginate_button next">Last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+
+{% endblock main_content %}
