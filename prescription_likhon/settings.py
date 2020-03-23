@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'backend_app.apps.BackendAppConfig',
     'medicine_app.apps.MedicineAppConfig',
+    'prescription_app.apps.PrescriptionAppConfig',
     'sweetify'
 ]
 

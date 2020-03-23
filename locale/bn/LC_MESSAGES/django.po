@@ -45,6 +45,8 @@ msgstr "মেডিসিন নাম"
 msgid "Medicine Generic Name"
 msgstr "মেডিসিন জেনেরিক নাম"
 
+msgid "Prescription"
+msgstr "প্রেসক্রিপশন"
 #: venv/lib/python3.6/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
 msgstr ""
