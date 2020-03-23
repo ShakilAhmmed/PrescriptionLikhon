@@ -33,6 +33,7 @@ urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include("backend_app.urls")),
     path('pull_medicine/', include("medicine_app.urls")),
+    path('prescription/', include("prescription_app.urls")),
     prefix_default_language=False, ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # urlpatterns = [
 #     path('admin/', admin.site.urls),
