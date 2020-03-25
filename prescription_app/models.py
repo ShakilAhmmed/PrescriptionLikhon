@@ -16,6 +16,7 @@ class PrescriptionPatient(models.Model):
 class PrescriptionMedicine(models.Model):
     prescription_patient = models.ForeignKey( PrescriptionPatient, on_delete = models.CASCADE)
     medicine = models.ForeignKey( Medicine , on_delete = models.CASCADE)
+    remarks = models.CharField(max_length=100)
     duration = models.IntegerField()
     duration_type = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)

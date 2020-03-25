@@ -68,12 +68,14 @@
         </div>
         <div class="col-lg-8">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-lg-2">
               <h4>Rx:</h4>
-              <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success" name="button"><i class="fa fa-plus"></i></button>
             </div>
+            <button style="float: right;margin-right: 2%;" type="button" @click="AddNewMedicineForm" class="btn btn-success" name="button"><i class="fa fa-plus"></i></button>
 
 
+
+            <!-- <form action="" @submit.prevent="AddIntoForm">
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -108,6 +110,18 @@
                             </div>
                             <br>
                             <div class="form-group">
+                              <label class="col-lg-3 control-label">Medicine Remarks:</label>
+                              <div class="col-lg-9">
+                                <select type="text" v-model="PrescriptionMedicineForm.remarks" class="form-control">
+                                  <option>After eating</option>
+                                  <option>Before eating</option>
+                                </select>
+                                <span class="text-danger"></span>
+
+                              </div>
+                            </div>
+
+                            <div class="form-group">
                               <label class="col-lg-3 control-label"></label>
                               <div class="col-lg-9">
                                 <input type="checkbox" @click="AddDuration($event,1)" name="" value=""> Morning
@@ -132,12 +146,14 @@
                             <div class="form-group">
                               <label class="col-lg-3 control-label">Duration Type:</label>
                               <div class="col-lg-9">
-                                <input type="radio" v-model="PrescriptionMedicineForm.duration" name="duration_type" value="1"> Days
-                                <input type="radio" v-model="PrescriptionMedicineForm.duration" name="duration_type" value="2"> Weeks
-                                <input type="radio" v-model="PrescriptionMedicineForm.duration" name="duration_type" value="3"> Months
-                                <input type="radio" v-model="PrescriptionMedicineForm.duration" name="duration_type" value="4"> Continue
+                                <input type="radio" v-model="PrescriptionMedicineForm.duration_type" name="duration_type" value="1"> Days
+                                <input type="radio" v-model="PrescriptionMedicineForm.duration_type" name="duration_type" value="2"> Weeks
+                                <input type="radio" v-model="PrescriptionMedicineForm.duration_type" name="duration_type" value="3"> Months
+                                <input type="radio" v-model="PrescriptionMedicineForm.duration_type" name="duration_type" value="4"> Continue
                               </div>
                             </div>
+                            <br>
+
 
                           </div>
                         </div>
@@ -151,14 +167,59 @@
                   <hr>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                   </div>
                 </div>
               </div>
             </div>
-
+            </form> -->
 
           </div>
+
+          <br>
+          <div class="col-lg-12">
+            <table class="table table-responsive">
+              <tr>
+                <th>Sl No</th>
+                <th>Medicine Name</th>
+                <th>Remarks</th>
+                <th>Schedule</th>
+                <th>Rules</th>
+                <th>Duration</th>
+                <th>Type</th>
+                <th>Action</th>
+              </tr>
+              <tr v-for="(medicine_data,index) in PrescriptionMedicine">
+                <td v-text="index+1"></td>
+                <td> <input type="text" v-model="PrescriptionMedicineForm.medicine_name" class="form-control" placeholder="Enter Medicine Name"> </td>
+                <td> <input type="text" v-model="PrescriptionMedicineForm.medicine_name" class="form-control" placeholder="Enter Medicine Name"></td>
+                <td style="width: 20%;">
+                  <input type="checkbox" @click="AddDuration($event,1)" name="" value=""> Morning
+                  <br>
+                  <input type="checkbox" @click="AddDuration($event,2)" name="" value=""> After Noon
+                  <br>
+                  <input type="checkbox" @click="AddDuration($event,3)" name="" value=""> Night
+                </td>
+                <td>
+                  <select type="text" v-model="PrescriptionMedicineForm.remarks" class="form-control">
+                    <option>After eating</option>
+                    <option>Before eating</option>
+                  </select>
+                </td>
+                <td><input type="number" v-model="PrescriptionMedicineForm.duration"  class="form-control"></td>
+                <td style="width: 30%;">
+                  <input type="radio" v-model="PrescriptionMedicineForm.duration_type" name="duration_type" value="1"> Days
+                  <input type="radio" v-model="PrescriptionMedicineForm.duration_type" name="duration_type" value="2"> Weeks
+                  <input type="radio" v-model="PrescriptionMedicineForm.duration_type" name="duration_type" value="3"> Months
+                  <input type="radio" v-model="PrescriptionMedicineForm.duration_type" name="duration_type" value="4"> Continue
+                </td>
+                <td><button type="button" @click="RemoveMedicineForm(index)" class="btn btn-danger" name="button"><i class="fa fa-trash"></i></button></td>
+              </tr>
+            </table>
+          </div>
+
+
+
         </div>
       </div>
     </div>
