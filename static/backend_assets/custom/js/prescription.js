@@ -2,12 +2,13 @@ new Vue({
   el: "#app",
   data() {
     return {
+      PrescriptionMedicine:[],
       PrescriptionMedicineForm :{
         medicine_name :'',
         medicine_duration:[],
         duration:'',
         duration_type:'',
-
+        remarks:'',
       }
     }
   },
@@ -23,7 +24,16 @@ new Vue({
               _this.PrescriptionMedicineForm.medicine_duration.splice(index, 1);
           }
       }
-      
+
+    },
+    AddNewMedicineForm:function() {
+      const _this = this;
+      _this.PrescriptionMedicine.push(_this.PrescriptionMedicineForm);
+      console.log(_this.PrescriptionMedicineForm);
+    },
+    RemoveMedicineForm:function( index ) {
+       const _this = this ;
+	     _this.PrescriptionMedicine.splice(index,1)
     }
   },
   created() {
