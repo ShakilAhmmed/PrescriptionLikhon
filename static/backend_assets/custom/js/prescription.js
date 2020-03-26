@@ -26,6 +26,16 @@ new Vue({
       }
 
     },
+    GetMadicineData:function() {
+        const _this = this;
+        axios.get()
+        .then((response) => {
+
+        })
+        .catch((error) => {
+          
+        })
+    },
     AddNewMedicineForm:function() {
       const _this = this;
       _this.PrescriptionMedicine.push(_this.PrescriptionMedicineForm);

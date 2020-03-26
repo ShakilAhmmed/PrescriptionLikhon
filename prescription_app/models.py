@@ -17,14 +17,17 @@ class PrescriptionMedicine(models.Model):
     prescription_patient = models.ForeignKey( PrescriptionPatient, on_delete = models.CASCADE)
     medicine = models.ForeignKey( Medicine , on_delete = models.CASCADE)
     remarks = models.CharField(max_length=100)
+    schedule_is_morning = models.IntegerField()
+    schedule_is_after_noon = models.IntegerField()
+    schedule_is_night = models.IntegerField()
     duration = models.IntegerField()
     duration_type = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-class PrescriptionMedicineDuration(models.Model):
-      prescription_patient = models.ForeignKey( PrescriptionPatient, on_delete = models.CASCADE)
-      prescription_medicine = models.ForeignKey( PrescriptionMedicine, on_delete = models.CASCADE)
-      medicine_duration = models.IntegerField()
-      created_at = models.DateTimeField(auto_now_add=True)
-      updated_at = models.DateTimeField(auto_now=True)
+# class PrescriptionMedicineDuration(models.Model):
+#       prescription_patient = models.ForeignKey( PrescriptionPatient, on_delete = models.CASCADE)
+#       prescription_medicine = models.ForeignKey( PrescriptionMedicine, on_delete = models.CASCADE)
+#       medicine_duration = models.IntegerField()
+#       created_at = models.DateTimeField(auto_now_add=True)
+#       updated_at = models.DateTimeField(auto_now=True)
