@@ -3,6 +3,13 @@
 {% load i18n %}
 {% block main_content %}
 {% load static %}
+{% if messages %}
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
 <div id="app">
 <div class="panel panel-flat">
   <div class="panel-heading">
@@ -67,7 +74,7 @@
         <div class="col-lg-2">
           <span class="vl"></span>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-8" style="margin-left: -8%;">
           <div class="row">
             <div class="col-lg-2">
               <h4>Rx:</h4>
@@ -179,19 +186,28 @@
 
           <br>
           <div class="col-lg-12">
-            <table class="table table-responsive">
+            <table class="table table-responsive" style="width: 1150px;">
               <tr>
                 <th>Sl No</th>
-                <th>Medicine Name</th>
-                <th>Remarks</th>
-                <th>Schedule</th>
+                <th style="width: 25%;">Medicine Name</th>
+                <th style="width: 18%;">Remarks</th>
+                <th >Morning</th>
+                <th>After Noon</th>
+                <th>Night</th>
                 <th>Duration</th>
                 <th>Duration Type</th>
                 <th>Action</th>
               </tr>
               <tr v-for="(medicine_data,index) in PrescriptionMedicine">
                 <td v-text="index+1"></td>
-                <td> <input type="text" name="medicine_name[]"  class="form-control" placeholder="Enter Medicine Name"> </td>
+                <td>
+
+                  <select name="medicine_name[]"  class="form-control">
+                      {% for medicine_data in all_medicine_list %}
+                        <option value="{{ medicine_data.pk }}"> {{ medicine_data.medicine_name }} </option>
+                      {% endfor %}
+                  </select>
+                </td>
                 <td>
                     <select type="text" name="remarks[]"  class="form-control">
                         <option>After eating</option>
@@ -199,27 +215,30 @@
                     </select>
                 </td>
                 <td style="width: 20%;">
-                  <!-- <input type="checkbox" @click="AddDuration($event,1)" name="" value=""> Morning
-                  <br>
-                  <input type="checkbox" @click="AddDuration($event,2)" name="" value=""> After Noon
-                  <br>
-                  <input type="checkbox" @click="AddDuration($event,3)" name="" value=""> Night -->
-
-
-                  <input type="checkbox" name="schedule_is_morning[]" value="Morning"> Morning
-                  <br>
-                  <input type="checkbox" name="schedule_is_after_noon[]" value="After Noon"> After Noon
-                  <br>
-                  <input type="checkbox"  name="schedule_is_night[]" value="Night"> Night
-                  
+                  <select class="form-control" name="schedule_is_morning[]">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                  </select>
+                </td>
+                <td style="width: 20%;">
+                  <select class="form-control" name="schedule_is_after_noon[]">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                  </select>
+                </td>
+                <td style="width: 20%;">
+                  <select class="form-control" name="schedule_is_night[]">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                  </select>
                 </td>
                 <td><input type="number" name="duration[]"  class="form-control"></td>
                 <td style="width: 30%;">
-                  <select class="form-control" name="">
-                      <option>Days</option>
-                      <option>Weeks</option>
-                      <option>Months</option>
-                      <option>Continue</option>
+                  <select class="form-control" name="duration_type[]">
+                      <option value="1">Days</option>
+                      <option value="2">Weeks</option>
+                      <option value="3">Months</option>
+                      <option value="4">Continue</option>
                   </select>
                 </td>
                 <td><button type="button" @click="RemoveMedicineForm(index)" class="btn btn-danger" name="button"><i class="fa fa-trash"></i></button></td>
