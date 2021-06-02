@@ -11,4 +11,4 @@ requests==2.23.0
 soupsieve==1.9.5
 sqlparse==0.3.0
 sweetify==2.0.0
-urllib3==1.25.8
+urllib3==1.26.5
